@@ -1,11 +1,14 @@
 var fs = require('fs')
 var template = require('lodash.template')
 var stringify = require('json-stringify-safe')
+var path = require('path')
 
-module.exports = function(res, x, expanded = false) {
-    fs.readFile('dd.html', function(err, data) {
-        fs.readFile('jquery.min.js', function(err, jquery) {
-            res.writeHead(200, {'Content-Type': 'text/html'})
+module.exports = function(x, res, expanded = false) {
+    var html_path = path.resolve(__dirname, './dd.html')
+    var jquery_path = path.resolve(__dirname, './jquery.min.js')
+    res.writeHead(200, {'Content-Type': 'text/html'})
+    fs.readFile(html_path, function(err, data) {
+        fs.readFile(jquery_path, function(err, jquery) {
             var compiled = template(data)
             var str = compiled({
                 jquery: jquery,
@@ -28,8 +31,7 @@ module.exports = function(res, x, expanded = false) {
                 ),
                 expanded: expanded
             })
-            res.write(str)
-            res.end()
+            res.end(str)
         })
     });
 }

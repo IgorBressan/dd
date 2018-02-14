@@ -1,5 +1,5 @@
 var http = require('http')
-var dd = require('./dd')
+var dd = require('./dd').dd
 
 http.createServer(function (req, res) {
     var str = "\
@@ -23,5 +23,5 @@ http.createServer(function (req, res) {
         }
     }
     obj.circular = obj
-    dd(res, obj)
+    dd(obj, res)
 }).listen(8080);
