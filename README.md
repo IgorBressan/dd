@@ -3,6 +3,8 @@
 
 > Like *Laravel dd*
 
+![alt text](./capture.png)
+
 ### How to use ?
 
 1. **Installation** (via npm)
