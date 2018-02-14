@@ -1,7 +1,7 @@
 # DD
 ## var dumper for *NodeJs* (and *ExpressJs*)
 
-> Like from *Laravel dd*
+> Like *Laravel dd*
 
 ### How to use ?
 
