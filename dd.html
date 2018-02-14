@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>dd</title>
+    <style>
+        body{
+            color: #333;
+        }
+        *{
+            font-family: monospace;
+            outline: none;
+            line-height: 20px;
+        }
+        details{
+            clear: both;
+        }
+        details .content{
+            padding: 0 17px;
+            clear: both;
+            border-left: 1px dashed #EEE;
+            margin-left: 3px;
+        }
+        summary::-webkit-details-marker {
+            display: none;
+        }
+        summary:after {
+            background: #EEE;
+            border-radius: 7px;
+            content: "+" !important;
+            color: #ccc;
+            float: right;
+            font-size: 13px;
+            font-weight: bold;
+            margin: 4px 0 0 5px;
+            padding: 0;
+            text-align: center;
+            width: 13px;
+            height: 13px;
+            line-height: 11px;
+        }
+        details[open] > summary:after {
+            content: "-" !important;
+        }
+        details summary{
+            cursor: pointer;
+            position: relative;
+            float: left;
+        }
+        details[open] > summary{
+            color: steelblue;
+        }
+        details summary:hover{
+            color: blue;
+        }
+        .separator{
+            color: thistle;
+        }
+        .quotes{
+            color: black;
+        }
+        .clear{
+            clear: both;
+        }
+        .undefined .value{ color: gray; }
+        .null .value{ color: purple; }
+        .boolean.true .value{ color: green; }
+        .boolean.false .value{ color: firebrick; }
+        .number .value{ color: blue; }
+        .string .value{ color: violet; }
+        .function .value{ color: darkcyan; font-style: italic; }
+        .circular .value{ color: red; }
+    </style>
+</head>
+<body>
+    <div id="log">
+
+    </div>
+<!-- <pre>
+<%= x %>
+</pre> -->
+
+    <script><%= jquery %></script>
+    <script>
+        var x = <%= x %>;
+        console.log(x);
+        var $log = $('#log');
+        display(x, $log);
+        function display(value, container, key = null) {
+            var type = typeof value;
+            switch (type) {
+                case "object": //--------------------------------if object
+                    if (value === null) { //---------------------if null
+                        var div = $('<div class="null clear"></div>');
+                        if (key !== null) div.append('<span class="key">'+key+'<span class="separator">:</span> </span>');
+                        div.append('<span class="value">null</span>');
+                        container.append(div);
+                    } else if(Array.isArray(value)) { //---------if array
+                        var det = $('<details <%= expanded ? 'open' : null %>></details>');
+                        var div = $('<div class="content"></div>');
+                        var sum = $('<summary></summary>');
+                        if(key !== null) sum.append('<span class="key">'+key+'<span class="separator">:</span> </span>');
+                        sum.append('<span class="key"><b>Array</b>['+value.length+']</span>');
+                        det.append(sum);
+                        det.append(div);
+                        container.append(det);
+                        $.each(value, function(k, v) {
+                            display(v, div, k);
+                        });
+                    } else { //----------------------------------if object and !null and !array
+                        var det = $('<details <%= expanded ? 'open' : null %>></details>');
+                        var div = $('<div class="content"></div>');
+                        var sum = $('<summary></summary>');
+                        if(key !== null) sum.append('<span class="key">'+key+'<span class="separator">:</span> </span>');
+                        sum.append('<span class="key"><b>Object</b>{'+Object.keys(value).length+'}</span>');
+                        det.append(sum);
+                        det.append(div);
+                        container.append(det);
+                        $.each(value, function(k, v) {
+                            display(v, div, k);
+                        });
+                    }
+                    break;
+                case "boolean": //-------------------------------if boolean
+                    if (value) { //------------------------------if true
+                        var div = $('<div class="boolean true clear"></div>');
+                        if (key !== null) div.append('<span class="key">'+key+'<span class="separator">:</span> </span>');
+                        div.append('<span class="value">true</span>');
+                        container.append(div);
+                    } else { //----------------------------------if false
+                        var div = $('<div class="boolean false clear"></div>');
+                        if (key !== null) div.append('<span class="key">'+key+'<span class="separator">:</span> </span>');
+                        div.append('<span class="value">false</span>');
+                        container.append(div);
+                    }
+                    break;
+                case "number": //--------------------------------if number
+                    var div = $('<div class="number clear"></div>');
+                    if (key !== null) div.append('<span class="key">'+key+'<span class="separator">:</span> </span>');
+                    div.append('<span class="value">'+value+'</span>');
+                    container.append(div);
+                    break;
+                case "string": //--------------------------------if string
+                    if (value === "dd_undefined") { //-----------if undefined (string from server)
+                        var div = $('<div class="undefined clear"></div>');
+                        if (key !== null) div.append('<span class="key">'+key+'<span class="separator">:</span> </span>');
+                        div.append('<span class="value">undefined</span>');
+                        container.append(div);
+                    } else if(value === "dd_function") { //------if function (string from server)
+                        var div = $('<div class="function clear"></div>');
+                        if (key !== null) div.append('<span class="key">'+key+'<span class="separator">:</span> </span>');
+                        div.append('<span class="value">f()</span>');
+                        container.append(div);
+                    } else if(value === "dd_circular") { //------if function (string from server)
+                        var div = $('<div class="circular clear"></div>');
+                        if (key !== null) div.append('<span class="key">'+key+'<span class="separator">:</span> </span>');
+                        div.append('<span class="value">[ &#9888; circular reference &#9888; ]</span>');
+                        container.append(div);
+                    } else {
+                        var div = $('<div class="string clear"></div>');
+                        if (key !== null) div.append('<span class="key">'+key+'<span class="separator">:</span> </span>');
+                        var quote = $('<span class="quotes">"</span>');
+                        var span_value = $('<span class="value"><span class="quotes">"</span></span>');
+                        var span = $('<span></span>');
+                        span.text(value);
+                        span_value.append(span);
+                        span_value.append(quote);
+                        div.append(span_value);
+                        container.append(div);
+                    }
+                    break;
+            }
+        }
+    </script>
+</body>
+</html>

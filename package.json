@@ -1,0 +1,15 @@
+{
+  "name": "dd",
+  "version": "1.0.0",
+  "description": "node js var dumper",
+  "main": "dd.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "json-stringify-safe": "^5.0.1",
+    "lodash.template": "^4.4.0"
+  }
+}
