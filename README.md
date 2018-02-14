@@ -1,6 +1,8 @@
 # DD
 ## var dumper for *NodeJs* (and *ExpressJs*)
 
+> Like from *Laravel dd*
+
 ### How to use ?
 
 1. **Installation** (via npm)
