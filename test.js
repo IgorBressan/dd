@@ -1,5 +1,5 @@
 var http = require('http')
-var dd = require('./dd').dd
+var dd = require('./dd')
 
 http.createServer(function (req, res) {
     var str = "\

@@ -6,7 +6,7 @@ var path = require('path')
 module.exports = function(x, res, expanded = false) {
     var html_path = path.resolve(__dirname, './dd.html')
     var jquery_path = path.resolve(__dirname, './jquery.min.js')
-    res.writeHead(200, {'Content-Type': 'text/html'})
+    res.setHeader('Content-Type', 'text/html')
     fs.readFile(html_path, function(err, data) {
         fs.readFile(jquery_path, function(err, jquery) {
             var compiled = template(data)
