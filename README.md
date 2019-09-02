@@ -1,7 +1,8 @@
 # DD
 ## var dumper for *AdonisJS*
+## BASED IN houssamdev-dd (https://github.com/HoussamDev21/dd)
 
-> Like *Laravel dd*
+> Like *Laravel dd* 
 
 ![alt text](./capture.png)
 
@@ -9,12 +10,12 @@
 
 1. **Installation** (via npm)
 ```
-npm install git@github.com:IgorBressan/dd.git --save
+npm install irbm-adonisjs-dd --save
 ```
 
 2. **usage**
 ```
-var dd = require('houssamdev-dd')
+var dd = require('irbm-adonisjs-dd')
 ...
   ... dd( yourData, responseObject, [expanded = false] )
 ```
