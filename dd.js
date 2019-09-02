@@ -3,10 +3,13 @@ var template = require('lodash.template')
 var stringify = require('json-stringify-safe')
 var path = require('path')
 
-module.exports = function(x, res, expanded = false) {
+module.exports = function(x, res) {
+
     var html_path = path.resolve(__dirname, './dd.html')
     var jquery_path = path.resolve(__dirname, './jquery.min.js')
-    res.header('Content-Type', 'text/html')
+
+    res.type('Content-Type', 'text/html')
+
     fs.readFile(html_path, function(err, data) {
         fs.readFile(jquery_path, function(err, jquery) {
             var compiled = template(data)
@@ -29,7 +32,7 @@ module.exports = function(x, res, expanded = false) {
                         return "dd_circular"
                     }
                 ),
-                expanded: expanded
+                expanded: true
             })
             res.end(str)
         })
