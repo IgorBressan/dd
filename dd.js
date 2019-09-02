@@ -10,7 +10,7 @@ module.exports = function(x, res) {
     var html_path = path.resolve(__dirname, './dd.html')
     var jquery_path = path.resolve(__dirname, './jquery.min.js')
 
-    setHeader(res, 'Content-Type', 'text/html')
+    res.header('Content-Type', 'text/html')
 
     fs.readFile(html_path, function(err, data) {
 
@@ -37,7 +37,7 @@ module.exports = function(x, res) {
                 ),
                 expanded: true
             })
-            res.end(str)
+            res.send(str)
         })
 
     });
