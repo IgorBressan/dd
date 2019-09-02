@@ -1,4 +1,4 @@
-# DD - WARNING! IN DEVELOPING
+# WARNING! under development
 ## var dumper for *AdonisJS*
 ## BASED IN houssamdev-dd (https://github.com/HoussamDev21/dd)
 
