@@ -15,7 +15,7 @@ npm install irbm-adonisjs-dd --save
 
 2. **usage**
 ```
-var dd = require('irbm-adonisjs-dd')
+const dd = use('irbm-adonisjs-dd')
 ...
   ... dd( yourData, responseObject, [expanded = false] )
 ```
