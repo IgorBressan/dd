@@ -17,7 +17,7 @@ npm install irbm-adonisjs-dd --save
 ```
 const dd = use('irbm-adonisjs-dd')
 ...
-  ... dd( yourData, responseObject, [expanded = false] )
+  ... dd(yourData)
 ```
 
 that's all ^^ 

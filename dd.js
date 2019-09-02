@@ -3,14 +3,14 @@ var template = require('lodash.template')
 var stringify = require('json-stringify-safe')
 var path = require('path')
 
-var headers = new Headers;
+var setHeader = require('setheader');
 
 module.exports = function(x) {
 
     var html_path = path.resolve(__dirname, './dd.html')
     var jquery_path = path.resolve(__dirname, './jquery.min.js')
 
-    headers.set('Content-Type', 'text/html')
+    setHeader('Content-Type', 'text/html')
 
     fs.readFile(html_path, function(err, data) {
         fs.readFile(jquery_path, function(err, jquery) {

@@ -10,7 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "json-stringify-safe": "^5.0.1",
-    "lodash.template": "^4.4.0"
+    "lodash.template": "^4.4.0",
+    "setheader": "^1.0.1"
   },
   "devDependencies": {},
   "repository": {
