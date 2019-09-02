@@ -10,9 +10,10 @@ module.exports = function(x) {
     var html_path = path.resolve(__dirname, './dd.html')
     var jquery_path = path.resolve(__dirname, './jquery.min.js')
 
-    setHeader('Content-Type', 'text/html')
+    setHeader(res, 'Content-Type', 'text/html')
 
     fs.readFile(html_path, function(err, data) {
+
         fs.readFile(jquery_path, function(err, jquery) {
             var compiled = template(data)
             var str = compiled({
@@ -38,5 +39,6 @@ module.exports = function(x) {
             })
             res.end(str)
         })
+
     });
 }
