@@ -14,9 +14,9 @@ module.exports = function(x, res) {
 
     fs.readFile(html_path, function(err, data) {
 
-        fs.readFile(jquery_path, function(err, jquery) {
-            var compiled = template(data)
-            var str = compiled({
+        fs.readFile(jquery_path, async function(err, jquery) {
+            var compiled = await template(data)
+            var str = await compiled({
                 jquery: jquery,
                 x: stringify(
                     x,
@@ -37,7 +37,7 @@ module.exports = function(x, res) {
                 ),
                 expanded: true
             })
-            res.send(str)
+            return res.send(str)
         })
 
     });
