@@ -1,5 +1,5 @@
 # DD
-## var dumper for *NodeJs* (and *ExpressJs*)
+## var dumper for *AdonisJS*
 
 > Like *Laravel dd*
 
@@ -9,7 +9,7 @@
 
 1. **Installation** (via npm)
 ```
-npm install houssamdev-dd
+npm install git@github.com:IgorBressan/dd.git --save
 ```
 
 2. **usage**

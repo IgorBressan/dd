@@ -1,6 +1,6 @@
 {
-  "name": "houssamdev-dd",
-  "version": "1.0.5",
+  "name": "irbm-adonisjs-dd",
+  "version": "1.0.0",
   "description": "node js var dumper",
   "main": "dd.js",
   "scripts": {
