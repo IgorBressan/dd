@@ -5,7 +5,7 @@ var path = require('path')
 
 var setHeader = require('setheader');
 
-module.exports = function(x) {
+module.exports = function(x, res) {
 
     var html_path = path.resolve(__dirname, './dd.html')
     var jquery_path = path.resolve(__dirname, './jquery.min.js')
